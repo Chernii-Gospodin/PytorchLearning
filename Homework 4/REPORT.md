@@ -12,21 +12,23 @@
 Для начала я скопировал с гитхаба код на обучение моделей *(run_epoch, train_model, Dataset|Dataloader)*, и взял основы классов простых нейронных сетей (после чуть видоизменил и добавил свой класс Linear), а после обучил модели
 
 Для каждого варианта:
->
+
 - Обучите модель с одинаковыми гиперпараметрами
->>Обучил
->
+>Обучил
+
 - Сравните точность на train и test множествах
->>Скопировал функции plot_training_history, визуализировал метрики, самой точной оказалась CNN ~0.993+ test accr, далее ResNet, а FCN начала переобучаться после 7 итерации (видно, что tesst accr начал падать)![alt text](https://picsum.photos/400)
+>Скопировал функции plot_training_history, визуализировал метрики, самой точной оказалась CNN ~0.993+ test accr, далее ResNet, а FCN начала переобучаться после 7 итерации (видно, что tesst accr начал падать)
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/ResNet%20metrics.png)
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/FCN%20metrics.png)
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/CNN%20metrics.png)
 >
 - Измерьте время обучения и инференса
->> Вывел время инференс - самая быстрой оказалась CNN модель, после FCN, и самая медленная ResNet
->
+> Вывел время инференс - самая быстрой оказалась CNN модель, после FCN, и самая медленная ResNet
 - Визуализируйте кривые обучения
->> Визуализировал с помощью AUC-ROC и везде мне показывались метрики   > 0.99+, что удивило меня ![alt text](https://picsum.photos/400)
->
+> Визуализировал с помощью AUC-ROC и везде мне показывались метрики   > 0.99+, что удивило меня
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/CNN%20AUC-ROC.png)
 - Проанализируйте количество параметров
->> Получил интересные данные: самая лучшая модель - CNN, и там 50186 параметров. Дальше идет ResNet - 163466, после FC - 70090. То есть CNN оказалась легче и гибче
+> Получил интересные данные: самая лучшая модель - CNN, и там 50186 параметров. Дальше идет ResNet - 163466, после FC - 70090. То есть CNN оказалась легче и гибче
 
 
 ---
@@ -45,21 +47,27 @@
 - CNN с регуляризацией и Residual блоками
  
  Для каждого варианта:
- >
+ 
  - Обучите модель с одинаковыми гиперпараметрами
->> Обучил
->
+>Обучил
+
  - Сравните точность и время обучения
- >> Сохранил и визуализировал метрики. У DeepFCN график потерь и accuracy гладкий, но вот что удивило - Test accr (~0.98+)  больше Train accr. У ResNetCNN график получился очень ломанный (скорее всего из-за отсутствия + обучался *ОЧЕНЬ* долго (37 минут 10 эпох), но результыт вполне сносный - в пике test accr 0.99+, что очень радует.![alt text](https://picsum.photos/400)
- >
- - Проанализируйте переобучение
- >> Переобучения не заметил (скорее всего из-за недостатка эпох), но   до него будет тяжело дойти из-за огромного кол-ва параметров
- > 
- - Визуализируйте confusion matrix
->> График![alt text](https://picsum.photos/400)
+ > Сохранил и визуализировал метрики. У DeepFCN график потерь и accuracy гладкий, но вот что удивило - Test accr (~0.98+)  больше Train accr. У ResNetCNN график получился очень ломанный (скорее всего из-за отсутствия + обучался *ОЧЕНЬ* долго (37 минут 10 эпох), но результыт вполне сносный - в пике test accr 0.99+, что очень радует.
 > 
+> ResNetCNN
+ > ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/ResNetCNN%20losses-accr.png)
+> DeepFCN
+ > ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/DeepFCN%20losses-accr.png)
+ 
+ - Проанализируйте переобучение
+ > Переобучения не заметил (скорее всего из-за недостатка эпох), но   до него будет тяжело дойти из-за огромного кол-ва параметров
+ 
+ - Визуализируйте confusion matrix
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/DeepFCN%20matrix.png)
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/ResNetCNN%20matrix.png)
+
  - Исследуйте градиенты (gradient flow)
->> График![alt text](https://picsum.photos/400)
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/grad_flow_deepfcn.png)
 
 
 
