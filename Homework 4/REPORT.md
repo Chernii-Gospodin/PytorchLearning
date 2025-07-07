@@ -68,7 +68,7 @@
 
  - Исследуйте градиенты (gradient flow)
 > ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/grad_flow_deepfcn.png)
-
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/grad_flow_resnetcnn.png)
 
 
 #### В этой работе я понял, что CNN - универсальный элемент нейронной сети, обладает гибкостью, мощностью и легкостью. Мега машина в мире нейронных сетей, применяется практически везде (Faster R-CNN, ResNet50 + R-CNN). Также отточил навык считывания и понимания метрик и их графиков. Повторил, как создавать каркас для NN-сетей 
