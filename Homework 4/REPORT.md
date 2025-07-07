@@ -113,6 +113,43 @@
 >
 > ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/layer0.png)
 
+---
+# 2.2 Влияние глубины CNN (15 баллов)
+ Исследуйте влияние глубины CNN:
+ - Неглубокая CNN (2 conv слоя)
+ - Средняя CNN (4 conv слоя)
+ - Глубокая CNN (6+ conv слоев)
+ - CNN с Residual связями
+ 
+ Для каждого варианта:
+ - Сравните точность и время обучения
+Tide CNN = [15:46<00:00, 94.60s/it]
+Wide CNN = [18:26<00:00, 110.64s/it]
+Deep CNN = [18:46<00:00, 112.68s/it]
+Resnet CNN = [24:37<00:00, 149.71/it]
+
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/cnn_tide_metric.png)
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/cnn_wide_metric.png)
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/cnn_deep_metric.png)
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/resnet_cnn_metric.png)
+>
+> Как видно на графиках самая лучшая модель - DeepCNN, с низкими loss и высокими Accuracy на test. Потери и Accuracy на Resnet CNN шли очень нестабильно (но оставались достаточно высокими)
+
+ - Проанализируйте vanishing/exploding gradients
+>
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/cnn_deep%20loss-grad.png)
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/resnet_cnn%20loss-grad.png)
+>
+> Как видно на графиках с логорифмическими xticks никаких vanishing/exploding нет. Есть только намек на vanishing в DeepCNN Linear layer, но это связано с тем, что веса лишь слегка регулируется, ведь основная работа ложится на CNN, где градиенты в пределах нормы (10-e4 <--> 10-e2)
+ - Исследуйте эффективность Residual связей
+ - Визуализируйте feature maps
+>
+> ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/feature_maps1.png)
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/feature_maps2.png)
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/feature_maps3.png)
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/feature_maps4.png)
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/feature_maps5.png)
+>![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%204/images/feature_maps6.png)
 
 ## В этой части я убедился, что чем глубже сеть, тем лучше ее результаты (но также возрастает время на ее обучение). Полностью разобрался, как работают рецептивные слои и визуализируются карты признаков
 ---
