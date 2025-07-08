@@ -1,14 +1,26 @@
 ---
-
 ## Задание 1: Стандартные аугментации torchvision (15 баллов)
 
-1. Создайте пайплайн стандартных аугментаций torchvision (например, RandomHorizontalFlip, RandomCrop, ColorJitter, RandomRotation, RandomGrayscale).
-2. Примените аугментации к 5 изображениям из разных классов (папка train).
-3. Визуализируйте:
-   - Оригинал
-   - Результат применения каждой аугментации отдельно
-   - Результат применения всех аугментаций вместе
+1) Создайте пайплайн стандартных аугментаций torchvision (например, RandomHorizontalFlip, RandomCrop, ColorJitter, RandomRotation, RandomGrayscale).
+2) Примените аугментации к 5 изображениям из разных классов (папка train).
+3) Визуализируйте 
+- Оригинал
+- Результат применения каждой аугментации отдельно
+- Результат применения всех аугментаций вместе
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Fubuki_all.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Fubuki_each.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Garo_all.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Garo_each.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Sonik_all.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Sonik_each.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Genos_all.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Genos_each.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Saitama_all.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Saitama_each.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Tatsumaki_all.png)
+   ![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Tatsumaki_each.png)
 
+Здесь представлены визуализации
 ---
 
 ## Задание 2: Кастомные аугментации (20 баллов)
