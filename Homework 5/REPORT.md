@@ -34,7 +34,11 @@
 ## Задание 3: Анализ датасета (10 баллов)
 
 1. Подсчитайте количество изображений в каждом классе.
-2. Найдите минимальный, максимальный и средний размеры изображений.
+> 30*6 = 180 В TRAIN
+>
+> 100*6 = 100 В TEST
+
+3. Найдите минимальный, максимальный и средний размеры изображений.
 >
 >**Тестовый датасет**
 >Статистика размеров изображений:\
@@ -87,6 +91,13 @@ ______________________________________
 
 3. Визуализируйте распределение размеров и гистограмму по классам.
 
+## Анализ тренировочного датасета
+
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/train_analisyz.png)
+
+## Анализ тестового датасета
+
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/test_analisyz.png)
 ---
 
 ## Задание 4: Pipeline аугментаций (20 баллов)
@@ -97,8 +108,18 @@ ______________________________________
    - apply(image)
    - get_augmentations()
 2. Создайте несколько конфигураций (light, medium, heavy).
-3. Примените каждую конфигурацию к train и сохраните результаты.
+ > Все реализовал и создал
+> 
+4. Примените каждую конфигурацию к train и сохраните результаты.
 
+## Примеры для некотрых изображений
+
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Sonik_light1.png)
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Sonik_light2.png)
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Sonik_medium1.png)
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Sonik_medium2.png)
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Sonik_heavy2.png)
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/Saitama_heavy.png)
 ---
 
 ## Задание 5: Эксперимент с размерами (10 баллов)
@@ -107,14 +128,51 @@ ______________________________________
 2. Для каждого размера измерьте время загрузки и применения аугментаций к 100 изображениям, а также потребление памяти.
 3. Постройте графики зависимости времени и памяти от размера.
 
+У меня получились интересные результаты :
+```
+Size: (64, 64)
+Time: 0.08 sec
+Memory used: 0.13 MB
+---
+Size: (128, 128)
+Time: 0.16 sec
+Memory used: -0.73 MB
+---
+Size: (224, 224)
+Time: 0.32 sec
+Memory used: -1.42 MB
+---
+Size: (512, 512)
+Time: 1.41 sec
+Memory used: 3.51 MB
+```
+Очень серьезно будут нагружать мой компьютер большие изображения (примерно 800x800)  
+с batch_size > 16
+
 ---
 
 ## Задание 6: Дообучение предобученных моделей (25 баллов)
-
-1. Возьмите одну из предобученных моделей torchvision (например, resnet18, efficientnet_b0, mobilenet_v3_small).
+*** У меня не грузились веса с из-за того, что я сижу на мобильных данных и VPN не работает, поэтому  обучал без предобученных данных)
+1. Возьмите одну из предобученных  моделей torchvision (например, resnet18, efficientnet_b0, mobilenet_v3_small).
 2. Замените последний слой на количество классов вашего датасета.
 3. Дообучите модель на train, проверьте качество на val.
 4. Визуализируйте процесс обучения (loss/accuracy).
 
+### Получил не самые лучшие метрики
 
+Первые 10 эпох
+![IMAGE](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/metrics_10_epoches.png)
+
+Дообучение С 10 эпохи до 20 
+![IMAGE](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/metrics_from10to20_epoches.png)
+
+
+Также из-за повышения кол-ва изображений на batche (в 3 раза благодаря аугментации) моя видеокарта не выдеражала (не хватило памяти в 4гб). Из-за этого скорость обучения за 10 эрох составляла [08:28<00:00, 50.81s/it].
+
+При понижении batch_size=16 (то есть 48 изображений в итоговом batche) Скорость обучения увеличилась и составила на 30 эпох 100%[08:53<00:00, 17.77s/it]. Но это не помогло спасти от **Королевских** лоссов:
+
+![IMAGE](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%205/plots/%D0%9A%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BB%D0%BE%D1%81%D1%81%D1%8B.png)
+
+
+#  В целом, мне понравилась это тема. С помощью аугментаций можно разнообразить датасет, увеличив стойкость модели к немного аномальным данным, а также качетсво обучения (из-за большего размера итогового датасета)
 ---
