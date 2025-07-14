@@ -9,14 +9,8 @@
 ```python
 # Вариант 1: Использовать существующий токенизатор
 tokenizer = Tokenizer.from_file("mistral_tokenizer.json")
-
-# Вариант 2: Создать простой токенизатор на базе словаря
-from tokenizers import Tokenizer, models, pre_tokenizers, decoders, trainers
-
-tokenizer = Tokenizer(models.BPE())
-tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
-tokenizer.decoder = decoders.ByteLevel()
 ```
+Использовал первый вариант
 
 ### 4. Обучение
 
@@ -33,45 +27,6 @@ tokenizer.decoder = decoders.ByteLevel()
 
 Реализуйте метод генерации с правильным сдвигом контекста:
 
-```python
-def generate(self, prompt, context_len=50, temperature=1.0, max_out_tokens=200):
-    """
-    Генерирует ответ на основе промпта.
-    
-    При авторегрессии контекст сдвигается на 1 токен влево:
-    - Изначально: [prompt_tokens]
-    - После первого предсказания: [prompt_tokens, predicted_token]
-    - При следующем предсказании: [prompt_tokens[1:], predicted_token, new_prediction]
-    - И так далее, пока не достигнем max_length или EOS
-    """
-    self.eval()
-    with torch.no_grad():
-        # Токенизируйте промпт
-        input_ids = self.tokenizer.encode(prompt).ids
-        input_ids = torch.tensor([input_ids]).to(self.device)
-        
-        generated = input_ids.clone()
-        
-        for _ in range(max_out_tokens):
-            # Получите предсказание для последнего токена
-            outputs = self(input_ids)
-            next_token_logits = outputs[0, -1, :] / temperature
-            
-            # Выберите следующий токен
-            next_token = torch.multinomial(torch.softmax(next_token_logits, dim=-1), 1)
-            
-            # Добавьте к результату
-            generated = torch.cat([generated, next_token], dim=1)
-            
-            # Сдвиньте контекст на 1 токен влево для следующей итерации
-            input_ids = generated[:, -self.context_len:]
-            
-            # Проверьте на EOS
-            if next_token.item() == self.eos_token_id:
-                break
-    
-    return self.tokenizer.decode(generated[0].tolist())
-```
 
 ### 6. Сдвиг контекста при авторегрессии
 
@@ -92,4 +47,12 @@ input_ids = generated[:, -self.max_length:]
 
 Создайте простой интерфейс для тестирования:
 
+![alt text](https://github.com/Chernii-Gospodin/PytorchLearning/blob/main/Homework%206/problems.png)
+---
 
+Во время работы у мен возникли проблемы и я обнаружил свои недостатки (но это временно):
+- не грузился датасет с HuggingFace (из-за мобильной связи, на которой я сижу)
+- тяжело дается понимание трансформеров : структуру я понял, но мне требуется время, чтобы качественно обработать информацию. Также из-за этого я не мог быстро понять трансформер , если делать его from scratch. Отсюда вытекает другая проблема
+- код. Чтобы я быстро мог конструировать собственые Датасеты, модели (как простые CNN, так и кастомные ResNet, Transformers) быстро и качественно, несомненно, требуется практика, которой пока что мне не достает. В общем, мне просто нужно время для понимания
+
+6 работа для меня является самой тяжелой из всех: в первую очередь для понимания. Поэтому я не могу быть доволен качеством исполнения.
